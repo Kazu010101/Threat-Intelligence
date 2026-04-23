@@ -12,7 +12,7 @@ created: 2025-04-22
 
 # Phase 3 — Domain & IP Infrastructure Analysis + WHOIS
 
-**Previous:** [[02-Phase2-C2-URL-Analysis]] | **Next:** [[04-Phase4-MITRE-ATT&CK]]
+**Previous:** [[Phase 2-C2-URL-Analysis](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/02-Phase2-C2-URL-Analysis.md)] | **Next:** [[Phase 4-MITRE-ATT&CK](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/04-Phase4-MITRE-ATT&CK.md)]
 
 ---
 
@@ -26,7 +26,7 @@ Map the hosting infrastructure behind the IOC IP and domain, trace the ownership
 
 ### DGA Pattern Verification
 
-The domain was already confirmed as a MintsLoader DGA output in [[02-Phase2-C2-URL-Analysis]]. Key registration characteristics:
+The domain was already confirmed as a MintsLoader DGA output in [[Phase2-C2-URL-Analysis](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/02-Phase2-C2-URL-Analysis.md)]. Key registration characteristics:
 
 | Property | Expected for DGA domains | Significance |
 |---|---|---|
@@ -62,7 +62,8 @@ For this reason, the **IP WHOIS is the primary forensic value** in Phase 3.
 
 WHOIS lookup via ARIN (American Registry for Internet Numbers) — the authoritative registry for this IP block — returns the following record. **Note:** This data was captured 4 days prior to analysis and reflects the most current available registration data.
 
-![[arin-whois-blnetworks.png]]
+<img width="1171" height="563" alt="image" src="https://github.com/user-attachments/assets/6da53ec7-6126-46a5-a2c0-c1d9fb3f795a" />
+
 *Screenshot: ARIN WHOIS for 206.188.196.37 — Updated 4 days ago. NetName: BLNETWORKS-01, Organisation: BL Networks (BNL-77), Geofeed: geoip.blnwx.com/csv, RegDate: 2021-05-07.*
 
 ```
@@ -81,7 +82,8 @@ Comment:      Geofeed https://geoip.blnwx.com/csv
 
 ### Organisation Record — BL Networks
 
-![[arin-whois-blnetworks-org.png]]
+<img width="799" height="613" alt="image" src="https://github.com/user-attachments/assets/17311a4b-c130-4934-bbea-6b8d52916674" />
+
 *Screenshot: whois.com ARIN query — BL Networks (BNL-77), Address: 30 N Gould St, Ste R, Sheridan, WY 82801, Country: US, RegDate: 2019-11-01, Updated: 2024-11-25.*
 
 ```
@@ -108,16 +110,18 @@ Geofeed https://geoip.blnwx.com/csv
 
 The `blnwx.com` domain directly identifies **BL Networks as BLNWX** — the same infrastructure provider named in Recorded Future's Insikt Group MintsLoader research as the *original, primary hosting provider* for MintsLoader C2 servers.
 
-![[recordedfuture-mintsloader-infra.png]]
+<img width="995" height="377" alt="image" src="https://github.com/user-attachments/assets/9070bb31-aeac-4585-80ae-745340353b0d" />
+
 *Screenshot: Recorded Future — MintsLoader Infrastructure section. "Insikt Group initially found MintsLoader C2 servers hosted solely on BLNWX but later observed its growing use of other ISPs such as Stark Industries Solutions Ltd (AS44477), GWY IT Pty Ltd (AS199959), or SCALAXY-AS (58061), among others. MintsLoader C2 IP addresses announced via SCALAXY-AS are operated by hosting providers 3NT Solutions LLP and IROKO Networks Corporation, both of which are part of the Russian-language bulletproof hosting provider Inferno Solutions."*
 
-This single finding confirms that `206.188.196.37` is operating within MintsLoader's documented primary hosting infrastructure.
+This finding confirms that `206.188.196.37` is operating within MintsLoader's documented primary hosting infrastructure.
 
 ---
 
 ## 3.4 The Empty `OriginAS` Field — Infrastructure Intelligence
 
-![[arin-originas-empty.png]]
+<img width="659" height="626" alt="image" src="https://github.com/user-attachments/assets/0341853f-d7b1-42ea-98d9-c3c21060ad1f" />
+
 *Screenshot: ARIN WHOIS for 206.188.196.37 — OriginAS field is highlighted and empty. All other fields (NetRange, CIDR, NetName, Organisation) are populated, but OriginAS has no value.*
 
 In a standard ARIN WHOIS record, `OriginAS` declares which Autonomous System (ASN) is BGP-announcing the IP block. An empty field means the block was registered with ARIN but the BGP routing responsibility has been sub-allocated to another provider without updating the ARIN record.
@@ -201,19 +205,6 @@ The IP `206.188.196.37` was **likely already in use for MintsLoader C2 during th
 | BGP routing via SCALAXY-AS | ✅ Confirmed | Matches Phase 2 infrastructure migration documented by Insikt Group |
 | Overall infrastructure maturity | High | This is organised, persistent threat actor infrastructure — not a script kiddie setup |
 
----
-
-## 3.8 Abuse Reporting / Takedown Path
-
-For incident response purposes, the correct escalation order for this IOC is:
-
-```
-1. abuse@blnwx.com          ← ARIN-registered abuse contact (primary)
-2. abuse@scalaxy.com        ← BGP routing operator
-3. abuse@iroko.net          ← Sub-allocator
-4. noc@3nt.com              ← RADB maintainer (3NT/Inferno Solutions)
-5. ARIN abuse report        ← https://www.arin.net/resources/registry/whois/inaccuracy_reporting/
-6. .top registrar abuse     ← For domain suspension (parallel track)
 ```
 
 > **Note:** BLNWX and Inferno Solutions have documented histories of slow or non-responsive abuse handling — consistent with bulletproof hosting operations. Parallel escalation through all channels simultaneously is recommended.
