@@ -93,19 +93,7 @@ The `invoice.ps1.exe` filename alone eliminates SocGholish as the primary operat
 
 ---
 
-## 5.4 Tertiary Consideration — TA582 Overlap
-
-The VirusTotal community report (from [[01-Phase1-Malware-Family]]) tags the file hash with `#ta582`. TA582 is a tracked threat cluster associated with malspam campaigns. This tag suggests:
-
-1. The sample was observed in a TA582-attributed campaign context by a community analyst
-2. TA582 may be a **downstream customer of TAG-124's TDS** — i.e., they used TAG-124 infrastructure to deliver their payload
-3. This does not change the primary TAG-124 attribution but adds a secondary layer — TA582 may be the specific operator who commissioned the `mints13` campaign batch
-
-This is consistent with TAG-124's documented role as a multi-customer TDS: the infrastructure is TAG-124's, but the specific campaign may be commissioned by TA582 or another downstream actor.
-
----
-
-## 5.5 Attribution on the Vidar Stealer Connection
+## 5.4 Attribution on the Vidar Stealer Connection
 
 Some threat intelligence sources (including 1275.ru IOC feeds) associate the `s=mints13` campaign tag with **Vidar Stealer** payloads. This is not a contradiction — it reflects MintsLoader's payload delivery:
 
@@ -122,7 +110,7 @@ The specific payload delivered to `DESKTOP-ET51AJO` depends on the campaign oper
 
 ---
 
-## 5.6 Final Attribution Statement
+## 5.5 Final Attribution Statement
 
 > **The IOC set is attributed with HIGH CONFIDENCE to TAG-124 (LandUpdate808), operating a MintsLoader campaign (mints13) against a Windows workstation (DESKTOP-ET51AJO) via an invoice-themed phishing lure. The campaign used DGA-based C2 infrastructure hosted on BLNWX (BL Networks), routed through bulletproof hosting provided by Inferno Solutions / SCALAXY-AS, with the capability to deliver GhostWeaver RAT, StealC infostealer, or Vidar Stealer as final-stage payloads.**
 
@@ -156,7 +144,7 @@ abgnmlahkdfnfhn  →  MintsLoader DGA output (15-char + .top)
 
 ---
 
-## 5.7 Confidence Rating Breakdown
+## 5.6 Confidence Rating Breakdown
 
 | Evidence Type | Weight | Rationale |
 |---|---|---|
