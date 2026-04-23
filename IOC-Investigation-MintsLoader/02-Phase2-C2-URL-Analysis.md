@@ -62,6 +62,8 @@ $basename = "$($rand1)htr$($findom)";
 
 *Screenshot: MintsLoader Stage 2 PowerShell — `$basename` construction. `$rand1` provides the 10-character random prefix. `htr` is hardcoded. `$findom` is an undefined variable that defaults to empty, making the full suffix always `htr.php`. This is a coding mistake by the malware author that became a permanent, detectable C2 signature.*
 
+<img width="1484" height="240" alt="image" src="https://github.com/user-attachments/assets/2047a0b0-68e9-41ab-8642-098bce61eaf8" />
+
 **Why this matters for detection:** Because `htr.php` is hardcoded — not randomised — it appears in every MintsLoader C2 request across every campaign. This makes it a reliable network detection rule.
 
 ---
