@@ -41,7 +41,7 @@ Formally codify the observed attacker behaviours into MITRE ATT&CK tactics and t
 | **C2** (TA0011) | T1071.001 | Web Protocols | HTTP GET beacon to `abgnmlahkdfnfhn[.]top` over port 80 | ✅ Confirmed |
 | **C2** (TA0011) | T1568.002 | Dynamic Resolution | Daily-rotating DGA domains — static blocklists are ineffective | ✅ Confirmed |
 | **C2** (TA0011) | T1105 | Ingress Tool Transfer | Final payload delivered from `206.188.196.37` → SHA-256 hash | ✅ Confirmed |
-| **C2** (TA0011) | T1041 | Exfiltration Over C2 Channel | StealC payload exfiltrates credentials back via same HTTP channel | ⚠️ Inferred |
+
 
 ---
 
@@ -146,8 +146,7 @@ It points to a technically proficient, organised threat actor.
 | Defense Evasion | 5 | 0 |
 | Discovery | 2 | 0 |
 | Command & Control | 3 | 0 |
-| Exfiltration | 0 | 1 |
-| **Total** | **15** | **1** |
+| **Total** | **15** | **0** |
 
 All 15 confirmed techniques are directly evidenced by one or more of the five original IOCs.
 
