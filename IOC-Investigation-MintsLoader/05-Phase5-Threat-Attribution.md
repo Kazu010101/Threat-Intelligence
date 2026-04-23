@@ -154,7 +154,6 @@ abgnmlahkdfnfhn  →  MintsLoader DGA output (15-char + .top)
 | DGA domain pattern | High | Mathematically verified against published PowerShell source code |
 | Invoice phishing vector | High | Differentiates TAG-124 from SocGholish (eliminates primary competitor) |
 | SCALAXY-AS BGP routing | Medium-High | Phase 2 infrastructure transition documented by Insikt Group |
-| TA582 community tag | Medium | Suggests possible downstream campaign operator — does not conflict with TAG-124 |
 
 ---
 
