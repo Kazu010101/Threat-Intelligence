@@ -11,7 +11,7 @@ created: 2025-04-22
 
 # Phase 4 — TTP Analysis: MITRE ATT&CK Mapping
 
-**Previous:** [[03-Phase3-Infrastructure-WHOIS]] | **Next:** [[05-Phase5-Threat-Attribution]]
+**Previous:** [[Phase 3-Infrastructure-WHOIS](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/03-Phase3-Infrastructure-WHOIS.md)] | **Next:** [[Phase 5-Threat-Attribution](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/05-Phase5-Threat-Attribution.md)]
 
 ---
 
