@@ -205,8 +205,6 @@ The IP `206.188.196.37` was **likely already in use for MintsLoader C2 during th
 | BGP routing via SCALAXY-AS | ✅ Confirmed | Matches Phase 2 infrastructure migration documented by Insikt Group |
 | Overall infrastructure maturity | High | This is organised, persistent threat actor infrastructure — not a script kiddie setup |
 
-```
-
 > **Note:** BLNWX and Inferno Solutions have documented histories of slow or non-responsive abuse handling — consistent with bulletproof hosting operations. Parallel escalation through all channels simultaneously is recommended.
 
 ---
