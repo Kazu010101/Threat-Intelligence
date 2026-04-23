@@ -12,7 +12,7 @@ created: 2025-04-22
 
 # Phase 5 — Threat Intel Correlation: Threat Group Attribution
 
-**Previous:** [[04-Phase4-MITRE-ATT&CK]] | **Back to:** [[00-Index]]
+**Previous:** [[Phase4-MITRE-ATT&CK](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/04-Phase4-MITRE-ATT&CK.md)] | **Back to:** [[Index](https://github.com/Kazu010101/Threat-Intelligence/blob/main/README.md)]
 
 ---
 
@@ -89,7 +89,7 @@ However, SocGholish does not match the primary delivery vector of our IOC set:
 
 The `invoice.ps1.exe` filename alone eliminates SocGholish as the primary operator. SocGholish never delivers invoice-themed payloads — its entire operational model depends on fake browser update lures delivered through web browser interactions.
 
-**SocGholish attribution confidence: LOW (38%) — possible overlap via shared MintsLoader infrastructure, but not the primary operator of this campaign.**
+**SocGholish attribution confidence: LOW — possible overlap via shared MintsLoader infrastructure, but not the primary operator of this campaign.**
 
 ---
 
@@ -107,7 +107,7 @@ This is consistent with TAG-124's documented role as a multi-customer TDS: the i
 
 ## 5.5 Attribution on the Vidar Stealer Connection
 
-Some threat intelligence sources (including 1275.ru IOC feeds) associate the `s=mints13` campaign tag with **Vidar Stealer** payloads. This is not a contradiction — it reflects MintsLoader's modular payload delivery:
+Some threat intelligence sources (including 1275.ru IOC feeds) associate the `s=mints13` campaign tag with **Vidar Stealer** payloads. This is not a contradiction — it reflects MintsLoader's payload delivery:
 
 ```
 MintsLoader (TAG-124 delivery infrastructure)
