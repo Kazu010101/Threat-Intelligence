@@ -1,7 +1,7 @@
 # IOC Investigation — MintsLoader / TAG-124 Attribution
 
 > **Cybersecurity Portfolio Project** | Practical Security Analyst Training (PCSA) - Cylynk Activity  
-> **Skill Level:** Intermediate | **Domain:** Threat Intelligence / IOC Analysis
+> **Domain:** Threat Intelligence / IOC Analysis
 
 ---
 
