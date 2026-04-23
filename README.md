@@ -27,6 +27,8 @@ The investigation follows a structured five-phase methodology aligned with profe
 
 ## Investigation Phases
 
+<img width="1340" height="252" alt="image" src="https://github.com/user-attachments/assets/7613ba99-a970-45bc-b82a-d482f0fdc65e" />
+
 | Phase | Focus | Key Finding |
 |---|---|---|
 | [Phase 1](IOC-Investigation-MintsLoader/01-Phase1-Malware-Family.md) | Hash & File Analysis | MintsLoader malware family confirmed via VirusTotal (30/63 detections) |
