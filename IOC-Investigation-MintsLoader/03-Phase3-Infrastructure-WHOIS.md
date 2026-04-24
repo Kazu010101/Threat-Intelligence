@@ -26,7 +26,7 @@ Map the hosting infrastructure behind the IOC IP and domain, trace the ownership
 
 ### DGA Pattern Verification
 
-The domain was already confirmed as a MintsLoader DGA output in [[Phase2-C2-URL-Analysis](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/02-Phase2-C2-URL-Analysis.md)]. Key registration characteristics:
+The domain was already confirmed as a MintsLoader DGA output in [[Phase2-C2-URL-Analysis](https://github.com/Kazu010101/Threat-Intelligence/blob/main/IOC-Investigation-MintsLoader/02-Phase2-C2-URL-Analysis.md)]. Key registration characteristics are:
 
 | Property | Expected for DGA domains | Significance |
 |---|---|---|
@@ -48,9 +48,9 @@ The `.top` TLD is a deliberate operational choice:
 
 Due to the short-lived, privacy-protected nature of DGA domains, a WHOIS lookup on `abgnmlahkdfnfhn[.]top` is likely to return one of three outcomes:
 
-1. **Not found / expired** — the domain's registration lapsed after its single-day use
-2. **Privacy-protected** — only registrar name and dates visible, no registrant identity
-3. **Registry suspended** — domain placed on `serverHold` following abuse report
+1. **Not found / expired**: the domain's registration lapsed after its single-day use
+2. **Privacy-protected**: only registrar name and dates visible, no registrant identity
+3. **Registry suspended**:  domain placed on `serverHold` following abuse report
 
 For this reason, the **IP WHOIS is the primary forensic value** in Phase 3.
 
@@ -60,7 +60,7 @@ For this reason, the **IP WHOIS is the primary forensic value** in Phase 3.
 
 ### ARIN WHOIS Record (Primary Source)
 
-WHOIS lookup via ARIN (American Registry for Internet Numbers) — the authoritative registry for this IP block — returns the following record. **Note:** This data was captured 4 days prior to analysis and reflects the most current available registration data.
+WHOIS lookup via ARIN (American Registry for Internet Numbers), the authoritative registry for this IP block, returns the following record. **Note:** This data was captured 4 days prior to analysis and reflects the most current available registration data.
 
 <img width="1171" height="563" alt="image" src="https://github.com/user-attachments/assets/6da53ec7-6126-46a5-a2c0-c1d9fb3f795a" />
 
@@ -108,7 +108,7 @@ The `Comment` field in the ARIN record contains:
 Geofeed https://geoip.blnwx.com/csv
 ```
 
-The `blnwx.com` domain directly identifies **BL Networks as BLNWX** — the same infrastructure provider named in Recorded Future's Insikt Group MintsLoader research as the *original, primary hosting provider* for MintsLoader C2 servers.
+The `blnwx.com` domain directly identifies **BL Networks as BLNWX** which is the same infrastructure provider named in Recorded Future's Insikt Group MintsLoader research as the *original, primary hosting provider* for MintsLoader C2 servers.
 
 <img width="995" height="377" alt="image" src="https://github.com/user-attachments/assets/9070bb31-aeac-4585-80ae-745340353b0d" />
 
@@ -147,7 +147,7 @@ This deliberate separation between the legal ARIN registrant and the actual BGP 
 
 ## 3.5 Wyoming Shell Company Pattern
 
-The registration address `30 N Gould St, Ste R, Sheridan, WY 82801` is a registered agent address — a commercial mail forwarding service, not a physical operations office. Wyoming is a preferred jurisdiction for threat-actor-linked shell companies for the following reasons:
+The registration address `30 N Gould St, Ste R, Sheridan, WY 82801` is a registered agent address; a commercial mail forwarding service, not a physical operations office. Wyoming is a preferred jurisdiction for threat-actor-linked shell companies for the following reasons:
 
 | Factor | Detail |
 |---|---|
@@ -159,7 +159,7 @@ The registration address `30 N Gould St, Ste R, Sheridan, WY 82801` is a registe
 
 > **Reference:** [Reuters — How cybercriminals are using Wyoming shell companies for global hacks (2023)](https://www.reuters.com/technology/cybersecurity/how-cybercriminals-are-using-wyoming-shell-companies-global-hacks-2023-12-12/)
 
-The use of a Wyoming shell company to obtain a US-based ARIN IP allocation — while the actual infrastructure is operated by a Russian-language bulletproof hosting provider via European ASNs — is a well-documented evasion pattern in cybercrime hosting operations.
+The use of a Wyoming shell company to obtain a US-based ARIN IP allocation, while the actual infrastructure is operated by a Russian-language bulletproof hosting provider via European ASNs, is a well-documented evasion pattern in cybercrime hosting operations.
 
 ---
 
@@ -195,7 +195,7 @@ MintsLoader C2 Server
 
 ## 3.7 Phase 3 Summary
 
-The IP `206.188.196.37` was **likely already in use for MintsLoader C2 during the BLNWX-primary phase**, and continued to be used after the operator migrated BGP routing to SCALAXY-AS without updating the underlying ARIN record. This is strong evidence of **long-term, stable C2 infrastructure** designed to complicate takedown efforts — not a one-time or opportunistic deployment.
+The IP `206.188.196.37` was **likely already in use for MintsLoader C2 during the BLNWX-primary phase**, and continued to be used after the operator migrated BGP routing to SCALAXY-AS without updating the underlying ARIN record. This is strong evidence of **long-term, stable C2 infrastructure** designed to complicate takedown efforts, not a one-time or opportunistic deployment.
 
 | Finding | Confidence | Significance |
 |---|---|---|
@@ -203,9 +203,9 @@ The IP `206.188.196.37` was **likely already in use for MintsLoader C2 during th
 | Empty `OriginAS` | ✅ Confirmed | Sub-allocation OPSEC — separation of legal and operational layers |
 | Wyoming shell company address | ✅ Confirmed | Documented pattern for bulletproof hosting ARIN registrations |
 | BGP routing via SCALAXY-AS | ✅ Confirmed | Matches Phase 2 infrastructure migration documented by Insikt Group |
-| Overall infrastructure maturity | High | This is organised, persistent threat actor infrastructure — not a script kiddie setup |
+| Overall infrastructure maturity | High | This is organised, persistent threat actor infrastructure, not a script kiddie setup |
 
-> **Note:** BLNWX and Inferno Solutions have documented histories of slow or non-responsive abuse handling — consistent with bulletproof hosting operations. Parallel escalation through all channels simultaneously is recommended.
+> **Note:** BLNWX and Inferno Solutions have documented histories of slow or non-responsive abuse handling which is consistent with bulletproof hosting operations. Parallel escalation through all channels simultaneously is recommended.
 
 ---
 
