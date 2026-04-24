@@ -7,7 +7,7 @@
 
 ## Project Summary
 
-This project documents a complete threat intelligence investigation — starting from five raw Indicators of Compromise (IOCs) found in a log file and culminating in a documented, confidence-rated attribution to a known threat actor group.
+This project documents a complete threat intelligence investigation, starting from five raw Indicators of Compromise (IOCs) found in a log file and culminating in a documented, confidence-rated attribution to a known threat actor group.
 
 The investigation follows a structured five-phase methodology aligned with professional threat intelligence practices, with all findings mapped to the MITRE ATT&CK framework. 
 
