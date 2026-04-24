@@ -41,13 +41,13 @@ Before attribution, we consolidate what has been established:
 
 **TAG-124** is a Traffic Distribution System (TDS) tracked by Recorded Future's Insikt Group. It overlaps with the threat activity clusters known as **LandUpdate808**, **KongTuke**, and **Chaya_002**.
 
-TAG-124 is not a single attacker — it is an organised e-crime operation functioning as a **malware distribution service**. Its infrastructure consists of:
+TAG-124 is not a single attacker. It is an organised e-crime operation functioning as a **malware distribution service**. Its infrastructure consists of:
 - A network of compromised WordPress sites used for initial delivery
 - Actor-controlled payload servers
 - A central TDS management server
 - PHP-based panel for campaign management
 
-TAG-124 operators distribute malware on behalf of multiple downstream threat actors — effectively acting as an Initial Access Broker (IAB) and delivery infrastructure provider for the broader cybercriminal ecosystem.
+TAG-124 operators distribute malware on behalf of multiple downstream threat actors, effectively acting as an Initial Access Broker (IAB) and delivery infrastructure provider for the broader cybercriminal ecosystem.
 
 **Known downstream customers of TAG-124:**
 - Rhysida Ransomware operators
@@ -75,7 +75,7 @@ TAG-124 operators distribute malware on behalf of multiple downstream threat act
 
 ## 5.3 Secondary Consideration — SocGholish / TA569
 
-SocGholish (also known as FakeUpdates, operated by TA569) cannot be fully excluded because it is a **documented MintsLoader consumer** — it has used MintsLoader as a second-stage payload in its infection chains since mid-2024.
+SocGholish (also known as FakeUpdates, operated by TA569) cannot be fully excluded because it is a **documented MintsLoader consumer**. It has used MintsLoader as a second-stage payload in its infection chains since mid-2024.
 
 However, SocGholish does not match the primary delivery vector of our IOC set:
 
@@ -87,7 +87,7 @@ However, SocGholish does not match the primary delivery vector of our IOC set:
 | Target selection | Specific sectors (industrial, legal, energy) | Opportunistic web traffic |
 | Infrastructure pattern | BLNWX → SCALAXY-AS | Uses different hosting |
 
-The `invoice.ps1.exe` filename alone eliminates SocGholish as the primary operator. SocGholish never delivers invoice-themed payloads — its entire operational model depends on fake browser update lures delivered through web browser interactions.
+The `invoice.ps1.exe` filename alone eliminates SocGholish as the primary operator. SocGholish is not found delivering invoice-themed payloads. Its operational model depends on fake browser update lures delivered through web browser interactions.
 
 **SocGholish attribution confidence: LOW — possible overlap via shared MintsLoader infrastructure, but not the primary operator of this campaign.**
 
@@ -106,7 +106,7 @@ MintsLoader (TAG-124 delivery infrastructure)
         └── Vidar Stealer (observed in Orange Cyberdefense campaigns)
 ```
 
-The specific payload delivered to `DESKTOP-ET51AJO` depends on the campaign operator's configuration at time of execution. Our SHA-256 hash represents the MintsLoader Stage 2 PowerShell loader itself — not the final payload — so multiple downstream payload types can be associated with the same loader hash across different campaign batches.
+The specific payload delivered to `DESKTOP-ET51AJO` depends on the campaign operator's configuration at time of execution. Our SHA-256 hash represents the MintsLoader Stage 2 PowerShell loader itself, not the final payload. Hence, multiple downstream payload types can be associated with the same loader hash across different campaign batches.
 
 ---
 
