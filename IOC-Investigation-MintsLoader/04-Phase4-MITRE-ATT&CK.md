@@ -50,9 +50,9 @@ Formally codify the observed attacker behaviours into MITRE ATT&CK tactics and t
 ### T1566.001 — Spearphishing Attachment (`invoice.ps1.exe`)
 
 The filename `invoice.ps1.exe` is a textbook spearphishing attachment:
-- **`invoice`** — business document lure, designed to bypass suspicion in a professional context
-- **`.ps1`** — visible extension if file extensions are shown; creates ambiguity about file type
-- **`.exe`** — true executable extension, hidden by default in Windows Explorer
+- **`invoice`**: business document lure, designed to bypass suspicion in a professional context
+- **`.ps1`**: visible extension if file extensions are shown; creates ambiguity about file type
+- **`.exe`**: true executable extension, hidden by default in Windows Explorer
 
 This technique is documented as TAG-124's primary delivery method for MintsLoader in targeted phishing campaigns against industrial, legal, and energy sector organisations.
 
@@ -62,9 +62,9 @@ This technique is documented as TAG-124's primary delivery method for MintsLoade
 
 Three layers of obfuscation are present:
 
-1. **File obfuscation** — double extension hides the executable nature of the file
-2. **Stage 1 JS obfuscation** — JavaScript uses junk comments, non-readable variable names, character replacement, and string encoding
-3. **Stage 2 PS obfuscation** — PowerShell payload is Base64-encoded, XOR-decoded, and GZIP-compressed
+1. **File obfuscation**: double extension hides the executable nature of the file
+2. **Stage 1 JS obfuscation**: JavaScript uses junk comments, non-readable variable names, character replacement, and string encoding
+3. **Stage 2 PS obfuscation**: PowerShell payload is Base64-encoded, XOR-decoded, and GZIP-compressed
 
 ---
 
@@ -106,7 +106,7 @@ This produces a deterministic but date-varying domain from a fixed 14-character 
 
 ### T1082 — System Information Discovery (`id=DESKTOP-ET51AJO`)
 
-The victim's hostname is exfiltrated in the very first C2 beacon — before any payload is delivered. This gives the operator immediate triage capability:
+The victim's hostname is exfiltrated in the very first C2 beacon before any payload is delivered. This gives the operator immediate triage capability:
 
 ```
 DESKTOP-*  → Non-domain-joined home/SMB user
@@ -121,7 +121,7 @@ Multiple victim hostnames visible in VirusTotal (`AZURE-PC`, `DESKTOP-ET51AJO`, 
 
 ## 4.3 Defense Evasion — Highest Technique Density
 
-The Defense Evasion tactic has the highest concentration of confirmed techniques in this IOC set — four independent sub-techniques all confirmed by direct IOC evidence:
+The Defense Evasion tactic has the highest concentration of confirmed techniques in this IOC set. The four independent sub-techniques all confirmed by direct IOC evidence:
 
 ```
 Defense Evasion techniques confirmed:
